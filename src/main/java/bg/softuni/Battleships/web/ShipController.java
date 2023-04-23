@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
-@RequestMapping("/ships")
+
 public class ShipController {
 
     @ModelAttribute("createShipDTO")
@@ -19,12 +19,12 @@ public class ShipController {
         return new CreateShipDTO();
     }
 
-    @GetMapping("/add")
+    @GetMapping("/ships/add")
     public String ships() {
         return "ship-add";
     }
 
-    @PostMapping("/add")
+    @PostMapping("/ships/add")
     public String ships(@Valid CreateShipDTO createShipDTO,
                         BindingResult bindingResult,
                         RedirectAttributes redirectAttributes){

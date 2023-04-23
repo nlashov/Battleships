@@ -1,6 +1,6 @@
 package bg.softuni.Battleships.models.dtos;
+
 import bg.softuni.Battleships.models.enums.ShipType;
-import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.*;
 
 import java.time.LocalDate;
@@ -21,7 +21,7 @@ public class CreateShipDTO {
     private LocalDate created;
 
     @NotNull
-    private ShipType category;
+    private int category;
 
     public CreateShipDTO() {}
 
@@ -61,11 +61,11 @@ public class CreateShipDTO {
         return this;
     }
 
-    public ShipType getCategory() {
+    public int getCategory() {
         return category;
     }
 
-    public CreateShipDTO setCategory(ShipType category) {
+    public CreateShipDTO setCategory(int category) {
         this.category = category;
         return this;
     }
