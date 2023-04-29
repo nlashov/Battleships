@@ -1,18 +1,24 @@
 package bg.softuni.Battleships.web;
 
 import bg.softuni.Battleships.models.dtos.CreateShipDTO;
+import bg.softuni.Battleships.services.ShipService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 
 public class ShipController {
+
+    private ShipService shipService;
+
+    public ShipController(ShipService shipService) {
+        this.shipService = shipService;
+    }
 
     @ModelAttribute("createShipDTO")
     public CreateShipDTO initCreateShipDTO() {
@@ -29,7 +35,7 @@ public class ShipController {
                         BindingResult bindingResult,
                         RedirectAttributes redirectAttributes){
 
-        if (bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors() || !this.shipService.create(createShipDTO)) {
             redirectAttributes.addFlashAttribute("createShipDTO", createShipDTO);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.createShipDTO", bindingResult);
 

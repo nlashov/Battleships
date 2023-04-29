@@ -2,6 +2,7 @@ package bg.softuni.Battleships.models.dtos;
 
 import bg.softuni.Battleships.models.enums.ShipType;
 import jakarta.validation.constraints.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
@@ -18,10 +19,11 @@ public class CreateShipDTO {
     private long health;
 
     @PastOrPresent
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate created;
 
-    @NotNull
-    private int category;
+    @PositiveOrZero
+    private int category = -1;
 
     public CreateShipDTO() {}
 
