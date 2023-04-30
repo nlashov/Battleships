@@ -16,7 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @RequestMapping("/users")
 public class AuthController {
 
-    private AuthService authService;
+    private final AuthService authService;
 
     public AuthController(AuthService authService) {
         this.authService = authService;
@@ -80,5 +80,11 @@ public class AuthController {
         return "redirect:/home";
     }
 
+    @GetMapping("/logout")
+    public String logout() {
+        this.authService.logout();
+
+        return "redirect:/";
+    }
 
 }

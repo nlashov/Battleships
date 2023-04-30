@@ -68,13 +68,23 @@ public class ShipService {
     }
 
     public List<ShipDTO> getShipsOwnedBy(long ownerId) {
-       return this.shipRepository.findByUserId(ownerId)
+       return this.shipRepository.findByOwnerId(ownerId)
                .stream()
                .map(ShipDTO::new)
                .collect(Collectors.toList());
     }
 
     public List<ShipDTO> getShipsNotOwnedBy(long ownerId) {
-        return null;
+        return this.shipRepository.findByOwnerIdNot(ownerId)
+                .stream()
+                .map(ShipDTO::new)
+                .collect(Collectors.toList());
+    }
+
+    public List<ShipDTO> getAllSorted() {
+        return this.shipRepository.findByOrderByHealthAscNameDescPowerAsc()
+                .stream()
+                .map(ShipDTO::new)
+                .collect(Collectors.toList());
     }
 }

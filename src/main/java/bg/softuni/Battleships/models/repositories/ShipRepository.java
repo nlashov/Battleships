@@ -12,5 +12,9 @@ import java.util.Optional;
 public interface ShipRepository extends JpaRepository<Ship, Long> {
     Optional<Ship> findByName(String name);
 
-    List<Ship> findByUserId(long ownerId);
+    List<Ship> findByOwnerId(long ownerId);
+
+    List<Ship> findByOwnerIdNot(long ownerId);
+
+    List<Ship> findByOrderByHealthAscNameDescPowerAsc();
 }

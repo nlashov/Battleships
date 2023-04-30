@@ -60,4 +60,12 @@ public class AuthService {
         this.userSession.login(user.get());
         return true;
     }
+
+    public void logout() {
+        userSession.logout();
+    }
+
+    public boolean isLoggedIn() {
+        return this.userSession.getId() > 0;
+    }
 }
