@@ -36,7 +36,7 @@ public class HomeController {
     @GetMapping("/home")
     public String loggedInIndex(Model model) {
         long loggedUserId = this.loggedUser.getId();
-        if (loggedUserId == 0) { // тук може и getLoggedUserId метод в AuthService, за да е централизирано всичко и за да е по-разбираем кода (==0?)
+        if (loggedUserId == 0) { // тук може и getLoggedUserId метод в AuthService, за да е централизирано всичко и за да е по-разбираем кода (==0?) test github
             return "redirect:/";
         }
         List<ShipDTO> ownShips = this.shipService.getShipsOwnedBy(loggedUserId);
